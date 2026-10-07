@@ -45,11 +45,11 @@
 
 | 部分 | 文件数 | 行数 |
 |---|---|---|
-| Java | 59 | 4,988 |
+| Java | 58 | 4,940 |
 | JavaScript | 11 | 4,309 |
 | HTML | 2 | 563 |
 | CSS | 2 | 932 |
-| **合计** | **74** | **10,792** |
+| **合计** | **73** | **10,744** |
 
 ### 核心数据
 
@@ -297,7 +297,7 @@ EnterpriseDiningSystem/
     │   ├── service/                    业务层
     │   │   └── impl/                   实现类
     │   ├── repository/                 数据访问（Spring Data JPA）
-    │   ├── entity/                     数据库实体（12 个）
+    │   ├── entity/                     数据库实体（11 个）
     │   ├── DTO/                        传输对象
     │   ├── config/                     WebMvcConfig、RoleInterceptor、FileUploadConfig
     │   ├── exception/                  PermissionException、RequisitionException、全局异常处理
@@ -514,14 +514,15 @@ python devtools/check-schema.py
 | 项 | 清理前 | 清理后 |
 |---|---|---|
 | **旧配图 `.png`** | 106 个文件 / **229.8 MB** | **51** 个文件 / **1.3 MB**（只留数据库引用的 `.jpeg`） |
-| 无用 Java 类 | `ResponseResult`、`RequisitionItemController`、`RequisitionItemService` | 已删除（共 112 行） |
+| 无用 Java 类 | `ResponseResult`、`RequisitionItemController`、`RequisitionItemService`、`RequisitionDetail` | 已删除（共 156 行） |
 | 无人调用的端点 | `/api/reports/{monthly-sales,employee-monthly,personal-monthly}`、`/monthly-sales-report` | 已删除（端点 54 → **50**） |
 | 死 CSS | `modules.css` 整个文件（53 个类，HTML 从未加载）+ 20 个死类 | 已删除（CSS 1,495 → **932** 行） |
 | 旧页面残留 | `index.txt`（58 KB，原"企业餐厅点餐系统"的控制台页面） | 已删除 |
 | 未使用 import | 12 处 | 已清理 |
 | 过期对照表 | `image-map.csv` 里还是 `.png` | 已修正为 `.jpeg` |
+| 冗余文档 | `配图替换清单.md`（信息已并入使用说明与 CSV） | 已删除（10 份 → **9 份**文档） |
 
-**结果**：Java 62 → **59** 文件，代码总量 11,547 → **10,792** 行，
+**结果**：Java 62 → **58** 文件，代码总量 11,547 → **10,744** 行，
 `src/` 目录 **236 MB → 1.9 MB**，接口 54 → **50** 个。
 删完后 **38 项自动化测试全部通过**，所有角色菜单与页面渲染正常。
 
