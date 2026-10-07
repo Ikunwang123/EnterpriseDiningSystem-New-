@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>控制台 - 企业办公用品申领管理系统</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/report-module.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="dash-body">
+<div class="shell">
+    <aside class="shell__sidebar">
+        <div class="shell__logo">
+            <i class="fas fa-utensils" style="color: #667eea;"></i>
+            <div>
+                <div class="logo-title">企业后勤</div>
+                <div class="logo-sub">申领管理系统</div>
+            </div>
+        </div>
+        <div class="shell__user">
+            <div class="user-info">
+                <div id="userName" class="user-name">未登录</div>
+                <div id="userRole" class="user-role">GUEST</div>
+            </div>
+        </div>
+        <nav class="shell__nav" id="mainNav">
+            <div class="nav-group">
+                <div class="nav-title">核心功能</div>
+                <!-- 总览只给管理端与配送员；普通员工登录后直接进「领用计划」 -->
+                <a class="nav-link" data-view="overview" data-roles="MANAGER,DISPATCHER">
+                    <i class="fas fa-chart-line"></i> 总览
+                </a>
+                <a class="nav-link" data-view="menu" data-roles="ALL,STAFF">
+                    <i class="fas fa-calendar-day"></i> 领用计划
+                </a>
+                <a class="nav-link" data-view="order" data-roles="ALL,STAFF">
+                    <i class="fas fa-shopping-cart"></i> 我的申领
+                </a>
+            </div>
+            <!-- 配送员（DISPATCHER）只保留「配送单打印」与「总览」；
+                 用品目录 / 汇总领用单 / 系统管理 等管理功能它都看不到。 -->
+            <div class="nav-group" data-require="DISPATCHER,MANAGER">
+                <div class="nav-title">配送管理</div>
+                <a class="nav-link" data-view="batch-print" data-roles="DISPATCHER,MANAGER">
+                    <i class="fas fa-print"></i> 配送单打印
+                </a>
+            </div>
+            <div class="nav-group" data-require="MANAGER">
+                <div class="nav-title">后勤管理</div>
+                <a class="nav-link" data-view="recipe" data-roles="MANAGER">
+                    <i class="fas fa-book"></i> 用品目录
+                </a>
+                <a class="nav-link" data-view="menu-manage" data-roles="MANAGER">
+                    <i class="fas fa-tasks"></i> 计划管理
+                </a>
+                <a class="nav-link" data-view="blanket" data-roles="MANAGER">
+                    <i class="fas fa-file-invoice"></i> 汇总领用单
+                </a>
+            </div>
+            <div class="nav-group" data-require="ADMIN">
+                <div class="nav-title">数据分析</div>
+                <a class="nav-link" data-view="report" data-roles="ADMIN">
+                    <i class="fas fa-chart-bar"></i> 领用统计
+                </a>
+            </div>
+            <div class="nav-group" data-require="MANAGER">
+                <div class="nav-title">系统管理</div>
+                <a class="nav-link" data-view="users" data-roles="MANAGER">
+                    <i class="fas fa-users"></i> 用户管理
+                </a>
+                <a class="nav-link" data-view="settings" data-roles="MANAGER">
+                    <i class="fas fa-cog"></i> 系统设置
+                </a>
+            </div>
+        </nav>
+        <div class="shell__footer">
+            <button class="btn outline medium" onclick="handleLogout()" style="width: 100%;">
+                <i class="fas fa-sign-out-alt"></i> 退出登录
+            </button>
+        </div>
+    </aside>
+    <main class="shell__main">
+        <header class="shell__header">
+            <div>
+                <div class="eyebrow">控制台</div>
+                <h1 id="pageTitle">总览</h1>
+                <p id="pageDesc">系统概览与数据统计</p>
+            </div>
+            <div class="header-actions" id="headerActions">
+                <!-- 动态填充操作按钮 -->
+            </div>
+        </header>
+        <section class="shell__content" id="contentArea">
+            <!-- 动态填充内容 -->
+        </section>
+    </main>
+</div>
+
+<!-- 引入外部JavaScript文件 -->
+    <!-- ?v= 是缓存刷新标记：改完前端 JS 后把它加一（如 v=3）即可让所有浏览器
+         立刻加载新文件，不必依赖 Ctrl+F5，也不会被旧缓存卡住。
+         背景：早期静态资源没有缓存响应头，浏览器自行启发式缓存，
+         出现过"服务器已是新代码、浏览器仍跑旧 JS"的问题（表现为改了没效果）。 -->
+    <script src="js/app.js?v=3"></script>
+    <script src="js/OverviewModule.js?v=3"></script>
+    <script src="js/SupplyItemModule.js?v=3"></script>
+    <script src="js/AvailabilityPlanModule.js?v=3"></script>
+    <script src="js/AvailabilityPlanBrowseModule.js?v=3"></script>
+    <script src="js/RequisitionModule.js?v=3"></script>
+    <script src="js/SummarySheetModule.js?v=3"></script>
+    <script src="js/BatchPrintModule.js?v=3"></script>
+    <script src="js/UserModule.js?v=3"></script>
+    <script src="js/SettingsModule.js?v=3"></script>
+    <script src="js/RequisitionReportModule.js?v=3"></script>
+
+</body>
+</html>

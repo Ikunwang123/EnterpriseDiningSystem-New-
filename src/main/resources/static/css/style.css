@@ -1,0 +1,925 @@
+:root {
+    /* HashiCorp Inspired Palette */
+    --primary-blue: #1563FF;
+    --primary-hover: #0052CC;
+    --text-main: #1D1E2C;
+    --text-secondary: #586069;
+    --bg-page: #F8F9FB;
+    --bg-surface: #FFFFFF;
+    --border-color: #E3E5E8;
+    
+    /* Metrics */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    line-height: 1.5;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Dashboard Shell - White Theme */
+.dash-body {
+    background: #f6f9fc;
+    color: #1a202c;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.shell {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    height: 100vh;
+    background: #ffffff;
+}
+
+.shell__sidebar {
+    background: #ffffff;
+    border-right: 1px solid #e2e8f0;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-shadow: 1px 0 0 0 rgba(0,0,0,0.04);
+}
+
+.shell__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #1a202c;
+    padding: 0 8px;
+}
+.logo-title { font-weight: 600; font-size: 16px; color: #1a202c; }
+.logo-sub { font-size: 11px; color: #718096; }
+
+.shell__user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 16px;
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.user-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: #1a202c;
+    line-height: 1.4;
+    letter-spacing: 0.2px;
+    text-align: center;
+}
+
+.user-role {
+    font-size: 12px;
+    color: #718096;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    text-align: center;
+}
+
+
+.shell__nav { display: flex; flex-direction: column; gap: 20px; flex: 1; }
+.nav-group { display: flex; flex-direction: column; gap: 4px; }
+.nav-title { font-size: 11px; color: #718096; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; padding: 0 8px; margin-bottom: 4px; }
+.nav-link {
+    display: flex; align-items: center; gap: 10px;
+    color: #4a5568; text-decoration: none;
+    padding: 10px 12px; border-radius: 6px;
+    transition: all 0.15s;
+    font-size: 14px;
+}
+.nav-link:hover { background: #f7fafc; color: #1a202c; }
+.nav-link.active { background: #edf2f7; color: #1a202c; font-weight: 500; }
+.nav-link i { width: 16px; text-align: center; }
+
+.shell__footer { margin-top: auto; padding-top: 16px; border-top: 1px solid #e2e8f0; }
+
+.shell__main {
+    background: #f6f9fc;
+    padding: 32px;
+    overflow-y: auto;
+}
+
+.shell__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+}
+.eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #718096; font-weight: 600; }
+.shell__header h1 { margin: 8px 0 4px; color: #1a202c; font-size: 28px; font-weight: 600; }
+.shell__header p { color: #718096; margin: 0; font-size: 14px; }
+.header-actions { display: flex; gap: 10px; }
+
+.shell__content { display: flex; flex-direction: column; gap: 24px; }
+
+.grid { display: grid; gap: 20px; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.cards-4 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+.card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+.card-title { font-weight: 600; color: #1a202c; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.card-sub { color: #718096; font-size: 13px; margin-top: 4px; }
+.card.stat { padding: 20px; }
+.stat-label { color: #718096; font-size: 13px; font-weight: 500; }
+.stat-value { font-size: 32px; font-weight: 700; color: #1a202c; margin: 8px 0; }
+.stat-trend { font-size: 12px; margin-top: 8px; display: flex; align-items: center; gap: 4px; font-weight: 500; }
+.stat-trend.up { color: #38a169; }
+.stat-trend.warn { color: #ed8936; }
+.stat-trend.info { color: #3182ce; }
+
+.table { width: 100%; border-collapse: collapse; }
+.table-row { display: grid; grid-template-columns: repeat(5, 1fr); padding: 12px 0; border-bottom: 1px solid #e2e8f0; align-items: center; }
+.user-table .table-row { 
+    grid-template-columns: minmax(60px, 80px) minmax(100px, 1.2fr) minmax(100px, 1.2fr) minmax(100px, 1fr) minmax(120px, 1.5fr) minmax(140px, 160px); 
+    gap: 20px; 
+}
+.table-row.head { color: #718096; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+
+.pill {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 4px 12px; border-radius: 12px;
+    font-size: 12px; font-weight: 500;
+}
+.pill.success { color: #22543d; background: #c6f6d5; }
+.pill.warn { color: #744210; background: #feebc8; }
+.pill.info { color: #2c5282; background: #bee3f8; }
+.pill.primary { color: #2d3748; background: #e2e8f0; }
+.pill.ghost { color: #718096; background: #edf2f7; }
+.pill.danger { color: #742a2a; background: #fed7d7; }
+
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+
+
+
+
+
+
+
+.list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; }
+.list li { display: flex; justify-content: space-between; align-items: center; color: #4a5568; padding: 12px 0; border-bottom: 1px solid #e2e8f0; font-size: 14px; }
+.list li:last-child { border-bottom: none; }
+
+
+
+.muted { color: #718096; font-size: 13px; }
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+.btn.primary { background: #667eea; color: #fff; }
+.btn.primary:hover { background: #5a67d8; }
+.btn.primary:disabled { opacity: 0.5; cursor: not-allowed; background: #cbd5e0; }
+.btn.outline { border: 1px solid #cbd5e0; color: #4a5568; background: transparent; }
+.btn.outline:hover { background: #f7fafc; border-color: #a0aec0; }
+.btn.outline:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn.ghost { background: #f7fafc; color: #4a5568; border: 1px solid #e2e8f0; }
+.btn.ghost:hover { background: #edf2f7; }
+.btn.mini { padding: 6px 12px; font-size: 12px; }
+
+.btn.small { padding: 8px 14px; font-size: 13px; }
+
+.btn.medium {
+    padding: 10px 18px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.btn.large { padding: 12px 24px; font-size: 16px; }
+.header-actions .btn { height: 38px; }
+
+.me-1 { margin-right: 4px; }
+
+/* 响应式设计 */
+@media (max-width: 900px) {
+    .shell { grid-template-columns: 1fr; }
+    .shell__sidebar { display: none; }
+    .shell__main { padding: 20px; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .cards-4 { grid-template-columns: repeat(2, 1fr); }
+    .recipe-search-container { width: 100%; }
+}
+/* Layout */
+.login-wrapper {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* --- Left Side: Brand Visual (Brand Area) --- */
+.visual-section {
+    flex: 1.8; /* Ratio increased: Visual area takes more space */
+    position: relative;
+    /* [!] 背景图片已改为本地引用: 请确保 images 文件夹下有 login-bg.png */
+    background-image: url('../images/login-bg.png'); 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* Overlay to make text readable */
+.visual-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Dark overlay */
+    z-index: 1;
+}
+
+.visual-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 40px;
+    /* 确保文字容器有固定高度，防止打字时跳动，可选 */
+    min-height: 120px; 
+}
+
+.visual-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    min-height: 58px; /* 预留一行高度 */
+}
+
+.visual-subtitle {
+    font-size: 20px;
+    font-weight: 400;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+    min-height: 30px; /* 预留一行高度 */
+}
+
+/* 打字机光标效果 */
+.typing-cursor::after {
+    content: '|';
+    animation: blink 1s infinite;
+    color: white;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* --- Right Side: Functional Area --- */
+.login-section {
+    flex: 1; /* Ratio: Keeps login area narrower relative to visual */
+    background: var(--bg-surface);
+    position: relative; /* 为 Footer 绝对定位做参照 */
+    
+    /* 核心布局：Flex 居中 */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 水平居中 */
+    justify-content: center; /* 垂直居中 */
+    
+    padding: 40px; /* Reduced padding further */
+}
+
+/* 表单容器：限制宽度 */
+.login-form-container {
+    width: 100%;
+    max-width: 380px; /* Made narrower for a more compact look */
+}
+
+.login-header {
+    margin-bottom: 40px;
+}
+
+.login-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text-main);
+}
+
+.login-subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.form-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    transition: all 0.2s;
+    background: #FAFAFA;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(21, 99, 255, 0.1);
+}
+
+/* Remember Me */
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.remember-me input {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary-blue);
+}
+
+/* Buttons - Login Page Specific */
+.login-form-container .btn,
+#loginForm .btn,
+#registerForm .btn,
+#forgotForm .btn,
+#view-login .btn,
+#view-register .btn,
+#view-forgot .btn {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    display: block;
+    text-align: center;
+    margin: 0;
+}
+
+/* Ensure buttons outside forms are also full width and aligned */
+#view-login > .btn,
+#view-register > .btn,
+#view-forgot > .btn {
+    width: 100%;
+    margin-top: 0;
+}
+
+/* Override .btn.large for login page to ensure consistent sizing */
+.login-form-container .btn.large,
+#loginForm .btn.large,
+#registerForm .btn.large,
+#forgotForm .btn.large {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 16px;
+}
+
+/* Enhanced border for outline buttons in login page */
+.login-form-container .btn.outline,
+#loginForm .btn.outline,
+#registerForm .btn.outline,
+#forgotForm .btn.outline,
+#view-login .btn.outline,
+#view-register .btn.outline,
+#view-forgot .btn.outline {
+    border: 2px solid #a0aec0 !important;
+    background: transparent;
+}
+
+.login-form-container .btn.outline:hover,
+#loginForm .btn.outline:hover,
+#registerForm .btn.outline:hover,
+#forgotForm .btn.outline:hover,
+#view-login .btn.outline:hover,
+#view-register .btn.outline:hover,
+#view-forgot .btn.outline:hover {
+    border-color: #718096 !important;
+    background: #f7fafc;
+}
+
+
+
+/* Divider */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 24px 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.divider::before { margin-right: 10px; }
+.divider::after { margin-left: 10px; }
+
+/* Utility */
+.text-link {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.text-link:hover {
+    text-decoration: underline;
+}
+
+/* Footer Copyright: 绝对定位在右下角 */
+.footer-link {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Password Strength Meter (Restored) */
+.password-strength-container {
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+.password-strength-meter {
+    height: 4px;
+    background-color: #E3E5E8;
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+}
+
+.meter-bar {
+    height: 100%;
+    width: 0;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    border-radius: 2px;
+}
+
+.password-strength-text {
+    font-size: 12px;
+    margin-top: 4px;
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: space-between;
+}
+
+.strength-label {
+    font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .visual-section { display: none; }
+    .login-section { flex: 1; max-width: 100%; padding: 40px; }
+    .footer-link {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        margin-top: 40px;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+/* 计划管理相关样式 */
+.recipe-selection-container {
+    margin-top: 10px;
+}
+
+/* 搜索框容器 */
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+/* 搜索框输入样式 */
+.search-box .form-input {
+    flex: 1;
+    height: 38px;
+    padding: 8px 12px;
+}
+
+/* 搜索框按钮样式 */
+.search-box .btn {
+    height: 38px;
+    padding: 8px 15px;
+    margin-left: 10px;
+}
+
+/* 用品目录相关样式 */
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.recipe-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: all 0.2s;
+}
+
+.recipe-card:hover {
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+#recipePagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+    padding: 0;
+}
+
+.pagination .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 0 12px;
+    margin: 0;
+    white-space: nowrap;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.pagination .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.pagination .btn.primary {
+    background: #667eea;
+    color: #fff;
+    border: 1px solid #667eea;
+}
+
+.pagination .btn.outline {
+    background: #fff;
+    color: #4a5568;
+    border: 1px solid #cbd5e0;
+}
+
+.pagination .btn.outline:hover {
+    background: #f7fafc;
+    border-color: #a0aec0;
+}
+
+.pagination .btn {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 12px;
+    font-size: 14px;
+}
+
+.pagination .btn.mini {
+    min-width: 30px;
+    height: 30px;
+    padding: 0 8px;
+    font-size: 12px;
+}
+
+.pagination button {
+    float: none;
+    display: inline-flex;
+}
+
+.recipe-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.recipe-image-placeholder {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f7fafc;
+}
+
+.recipe-info {
+    padding: 15px;
+}
+
+.recipe-name {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #1a202c;
+}
+
+.recipe-category {
+    font-size: 12px;
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.recipe-price {
+    font-weight: 700;
+    color: #1a202c;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.recipe-description {
+    font-size: 13px;
+    color: #718096;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.recipe-actions {
+    padding: 0 15px 15px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    padding: 20px 20px 10px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #1a202c;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #718096;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.form-actions {
+    margin-top: 20px;
+}
+
+.recipe-search-container .form-input {
+    height: 38px;
+}
+
+/* 计划管理美化样式 */
+.menu-history-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.toolbar-item {
+    display: flex;
+    align-items: center;
+}
+
+.toolbar .form-input {
+    height: 38px;
+}
+
+.recipe-selection-container {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 15px;
+    background: #f8fafc;
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.search-box .form-input {
+    flex: 1;
+    height: 38px;
+}
+
+.recipe-selection-list {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 10px;
+    background: #ffffff;
+}
+
+.selected-recipes-summary {
+    margin-top: 15px;
+    padding: 10px;
+    background: #ebf8ff;
+    border-radius: 6px;
+    border: 1px solid #bee3f8;
+    color: #2c5282;
+    font-size: 14px;
+}
+
+.menu-history-list .list li {
+    padding: 15px 0;
+}
+
+.menu-history-list .list li:first-child {
+    border-top: 1px solid #e2e8f0;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+
+
+/* 领用计划详情表格样式 */
+.menu-items-table .table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+    gap: 10px;
+    padding: 12px;
+    background: #f7fafc;
+    font-weight: 600;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.menu-items-table .table-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+    gap: 10px;
+    padding: 12px;
+    border-bottom: 1px solid #e2e8f0;
+    align-items: center;
+}
+
+/* 修复领用计划模态框中的双重滚动条问题 */
+#createMenuModal .modal-content {
+    overflow-y: hidden;
+}
+
+#createMenuModal .modal-body {
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+/* 修复用品选择列表的双重滚动条问题 */
+.recipe-selection-list {
+    max-height: 300px;
+    overflow-y: hidden;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 10px;
+    background: #ffffff;
+}
+
+/* 自定义滚动条样式 */
+.recipe-grid::-webkit-scrollbar {
+    width: 6px;
+}
+
+.recipe-grid::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.recipe-grid::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+}
+
+.recipe-grid::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}

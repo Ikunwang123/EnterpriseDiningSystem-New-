@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 企业办公用品申领管理系统</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login-wrapper">
+        <!-- Left Side: Brand Visual (品牌区) -->
+        <div class="visual-section">
+            <div class="visual-content">
+                <!-- 文本先留空，由JS动态生成 -->
+                <h1 class="visual-title" id="typewriter-title"></h1>
+                <p class="visual-subtitle" id="typewriter-subtitle"></p>
+                <!-- 隐藏的原始文本，用于JS读取 -->
+                <div id="raw-texts" style="display: none;">
+                    <span data-target="typewriter-title">企业办公用品申领管理系统</span>
+                    <span data-target="typewriter-subtitle">高效、专业、便捷的企业后勤服务</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Functional Area (功能区) -->
+        <div class="login-section">
+            <div class="login-form-container">
+                <!-- Logo -->
+                <div class="brand-logo" style="margin-bottom: 20px;">
+                    <i class="fas fa-cube" style="color: var(--primary-blue);"></i>
+                    <span style="font-weight: bold; font-size: 20px; color: var(--text-main);">SupplyHub</span>
+                </div>
+
+                <!-- ================= LOGIN FORM ================= -->
+                <div id="view-login">
+                    <div class="login-header">
+                        <h1 class="login-title">登录账户</h1>
+                        <p class="login-subtitle">欢迎使用企业办公用品申领管理系统</p>
+                    </div>
+                    
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label class="form-label">账号</label>
+                            <input type="text" class="form-input" id="username" placeholder="请输入工号或学号">
+                        </div>
+                        
+                        <div class="form-group">
+                            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                                <label class="form-label" style="margin-bottom:0;">密码</label>
+                                <a href="javascript:void(0)" class="text-link" onclick="switchView('forgot')" style="font-size: 14px;">忘记密码?</a>
+                            </div>
+                            <input type="password" class="form-input" id="password" placeholder="请输入密码">
+                        </div>
+                        
+                        <label class="remember-me">
+                            <input type="checkbox" id="rememberMe"> 记住我
+                        </label>
+                        
+                        <button type="submit" class="btn primary large">登 录</button>
+                    </form>
+
+                    <div class="divider">或</div>
+
+                    <button type="button" class="btn outline large" onclick="switchView('register')">创建新账号</button>
+                </div>
+
+                <!-- ================= REGISTER FORM ================= -->
+                <div id="view-register" style="display: none;">
+                    <div class="login-header">
+                        <h1 class="login-title">创建账户</h1>
+                        <p class="login-subtitle">注册新用户账户</p>
+                    </div>
+
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label class="form-label">工号/学号</label>
+                            <input type="text" class="form-input" id="reg-username" placeholder="作为登录账号" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">真实姓名</label>
+                            <input type="text" class="form-input" id="reg-realname" placeholder="请输入您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">设置密码</label>
+                            <input type="password" class="form-input" id="reg-password" placeholder="至少7位，需包含数字、字母、符号中的任意两种" required>
+                            
+                            <!-- 密码强度条 -->
+                            <div class="password-strength-container" id="reg-strength-container" style="display:none;">
+                                <div class="password-strength-meter">
+                                    <div class="meter-bar" id="reg-strength-bar"></div>
+                                </div>
+                                <div class="password-strength-text">
+                                    <span>安全程度</span>
+                                    <span class="strength-label" id="reg-strength-label">--</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">确认密码</label>
+                            <input type="password" class="form-input" id="reg-confirm-password" placeholder="请再次输入密码" required>
+                        </div>
+                        
+                        <button type="submit" class="btn primary large">立即注册</button>
+                        <button type="button" class="btn outline large" style="margin-top: 10px;" onclick="switchView('login')">返回登录</button>
+                    </form>
+                </div>
+
+                <!-- ================= FORGOT PASSWORD FORM ================= -->
+                <div id="view-forgot" style="display: none;">
+                    <div class="login-header">
+                        <h1 class="login-title">重置密码</h1>
+                        <p class="login-subtitle">验证身份后重置密码</p>
+                    </div>
+
+                    <form id="forgotForm">
+                        <div class="form-group">
+                            <label class="form-label">账号</label>
+                            <input type="text" class="form-input" id="reset-username" placeholder="请输入您的工号/学号" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">旧密码</label>
+                            <input type="password" class="form-input" id="reset-old-password" placeholder="请输入旧密码验证身份" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">新密码</label>
+                            <input type="password" class="form-input" id="reset-new-password" placeholder="至少7位，需包含数字、字母、符号中的任意两种" required>
+
+                            <!-- 密码强度条 -->
+                            <div class="password-strength-container" id="reset-strength-container" style="display:none;">
+                                <div class="password-strength-meter">
+                                    <div class="meter-bar" id="reset-strength-bar"></div>
+                                </div>
+                                <div class="password-strength-text">
+                                    <span>安全程度</span>
+                                    <span class="strength-label" id="reset-strength-label">--</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">确认新密码</label>
+                            <input type="password" class="form-input" id="reset-confirm-password" placeholder="请再次输入新密码" required>
+                        </div>
+                        
+                        <button type="submit" class="btn primary large">重置密码</button>
+                        <button type="button" class="btn outline large" style="margin-top: 10px;" onclick="switchView('login')">返回登录</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Footer Copyright (Absolute Positioned) -->
+            <div class="footer-link">
+                <span>© 2025 Wuyi University</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ---------- Password Validation Helper ----------
+        // 密码验证：至少7位，且包含数字、字母、符号中的任意两种
+        function isValidPassword(pwd) {
+            if (!pwd || pwd.length < 7) {
+                return false;
+            }
+            const hasDigit = /\d/.test(pwd);
+            const hasLetter = /[a-zA-Z]/.test(pwd);
+            const hasSymbol = /[^a-zA-Z0-9]/.test(pwd);
+            const count = (hasDigit ? 1 : 0) + (hasLetter ? 1 : 0) + (hasSymbol ? 1 : 0);
+            return count >= 2;
+        }
+
+        // ---------- Password Strength Helpers ----------
+        function calculateStrength(password) {
+            if (!password || password.length === 0) {
+                return { percent: 0, color: '#ff4d4f', text: '弱' };
+            }
+
+            const hasDigit = /\d/.test(password);
+            const hasLetter = /[a-zA-Z]/.test(password);
+            const hasSymbol = /[^a-zA-Z0-9]/.test(password);
+            
+            // 统计包含的类型数量
+            const typeCount = (hasDigit ? 1 : 0) + (hasLetter ? 1 : 0) + (hasSymbol ? 1 : 0);
+            
+            // 基础要求：至少7位，且包含数字、字母、符号中的任意两种
+            const baseOK = password.length >= 7 && typeCount >= 2;
+
+            let percent = 0;
+
+            // 如果不满足基础要求，计算"弱"等级的进度
+            if (!baseOK) {
+                // 基于长度和类型数量的平滑计算
+                // 长度贡献：0-6位对应0-40%（让6位接近40%）
+                const lengthScore = Math.min((password.length / 7) * 40, 40);
+                // 类型贡献：0-1种对应0-5%（降低类型权重，主要看长度）
+                const typeScore = typeCount * 5;
+                // 总进度：最高45%（留5%间隔到"中"的50%）
+                percent = Math.min(lengthScore + typeScore, 45);
+                return { percent: percent, color: '#ff4d4f', text: '弱' };
+            }
+
+            // 满足基础要求，计算"中"及以上等级的进度
+            // 基础分：50%（满足最低要求）
+            let score = 50;
+
+            // 长度加分（平滑增长，避免重复加分）
+            const len = password.length;
+            if (len >= 12) {
+                score += 20; // 12位及以上
+            } else if (len >= 10) {
+                score += 10; // 10-11位
+            } else if (len >= 8) {
+                score += 5;  // 8-9位
+            } else {
+                score += 2;  // 7位基础
+            }
+
+            // 字符类型加分（已有2种基础，这里额外加分）
+            if (hasDigit) score += 3;
+            if (hasLetter) score += 3;
+            if (hasSymbol) score += 4; // 符号权重稍高
+
+            // 大小写字母都有额外加分
+            const hasLower = /[a-z]/.test(password);
+            const hasUpper = /[A-Z]/.test(password);
+            if (hasLower && hasUpper) score += 5;
+
+            // 多样性奖励（包含3种类型）
+            if (typeCount >= 3) score += 8;
+
+            // 满配奖励（数字+字母+符号+长度>=12）
+            if (hasDigit && hasLetter && hasSymbol && password.length >= 12) {
+                score = 100;
+            }
+
+            percent = Math.min(score, 100);
+            // 确保满足基础要求的密码至少显示50%进度
+            if (percent < 50) percent = 50;
+
+            let color = '#faad14', text = '中'; // 默认"中"
+            if (percent >= 100) { 
+                color = '#52c41a'; 
+                text = '完美'; 
+            }
+            else if (percent >= 80) { 
+                color = '#73d13d'; 
+                text = '强'; 
+            }
+            else { 
+                color = '#faad14'; 
+                text = '中'; // 满足基础要求就是"中"
+            }
+            
+            return { percent, color, text };
+        }
+
+        function attachStrengthMeter(inputId, barId, labelId, containerId) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            const bar = document.getElementById(barId);
+            const label = document.getElementById(labelId);
+            const container = document.getElementById(containerId);
+            input.addEventListener('input', () => {
+                const val = input.value;
+                if (!val) { container.style.display = 'none'; return; }
+                container.style.display = 'block';
+                const res = calculateStrength(val);
+                bar.style.width = res.percent + '%';
+                bar.style.backgroundColor = res.color;
+                label.innerText = res.text;
+                label.style.color = res.color;
+            });
+        }
+
+        // Initialize meters
+        document.addEventListener('DOMContentLoaded', () => {
+            // Typing Effect
+            const titleEl = document.getElementById('typewriter-title');
+            const subEl = document.getElementById('typewriter-subtitle');
+            
+            const titleText = document.querySelector('span[data-target="typewriter-title"]').innerText;
+            const subText = document.querySelector('span[data-target="typewriter-subtitle"]').innerText;
+
+            function typeWriter(element, text, speed, callback) {
+                let i = 0;
+                element.classList.add('typing-cursor');
+                function type() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    } else {
+                        element.classList.remove('typing-cursor');
+                        if (callback) callback();
+                    }
+                }
+                type();
+            }
+
+            setTimeout(() => {
+                typeWriter(titleEl, titleText, 200, () => {
+                     setTimeout(() => {
+                        typeWriter(subEl, subText, 100);
+                     }, 500);
+                });
+            }, 500);
+
+            // Auto-fill from Cookie (Remember Me)
+            const cookies = document.cookie.split(';');
+            let rememberedUser = '';
+            for(let c of cookies) {
+                const [name, value] = c.trim().split('=');
+                if(name === 'remember_user') {
+                    rememberedUser = decodeURIComponent(value);
+                    break;
+                }
+            }
+            if(rememberedUser && rememberedUser !== 'null') {
+                document.getElementById('username').value = rememberedUser;
+                document.getElementById('rememberMe').checked = true;
+            }
+
+            // Attach Strength Meters
+            attachStrengthMeter('reg-password', 'reg-strength-bar', 'reg-strength-label', 'reg-strength-container');
+            attachStrengthMeter('reset-new-password', 'reset-strength-bar', 'reset-strength-label', 'reset-strength-container');
+        });
+
+        // --- 2. View Switching Logic ---
+        function switchView(viewName) {
+            // Hide all
+            document.getElementById('view-login').style.display = 'none';
+            document.getElementById('view-register').style.display = 'none';
+            document.getElementById('view-forgot').style.display = 'none';
+            
+            // Show target
+            document.getElementById('view-' + viewName).style.display = 'block';
+        }
+
+        // --- 3. API Logic ---
+
+        // Login
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            btn.innerText = '登录中...';
+            btn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('username', document.getElementById('username').value);
+            formData.append('password', document.getElementById('password').value);
+            formData.append('rememberMe', document.getElementById('rememberMe').checked);
+
+            try {
+                const response = await fetch('api/user/login', { method: 'POST', body: formData });
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    localStorage.setItem('currentUser', JSON.stringify(data.user || { 
+                        name: data.username, 
+                        role: data.role 
+                    })); 
+                    window.location.href = 'index.html';
+                } else {
+                    alert(data.msg || '登录失败');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('系统错误，请联系管理员');
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        // Register
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+
+            const username = document.getElementById('reg-username').value;
+            const password = document.getElementById('reg-password').value;
+            const confirmPassword = document.getElementById('reg-confirm-password').value;
+            const realName = document.getElementById('reg-realname').value;
+
+            // --- Client Side Validation ---
+            if (!username || !password || !confirmPassword || !realName) {
+                alert("所有字段都不能为空");
+                return;
+            }
+            if (/[\u4e00-\u9fa5]/.test(username)) {
+                alert("学号不能包含中文字符");
+                return;
+            }
+            if (password !== confirmPassword) {
+                alert("两次输入的密码不一致");
+                return;
+            }
+            // 使用全局密码验证函数
+            if (!isValidPassword(password)) {
+                alert("密码至少7位，需包含数字、字母、符号中的任意两种");
+                return;
+            }
+
+            btn.innerText = '注册中...';
+            btn.disabled = true;
+
+            const user = {
+                username: username,
+                password: password,
+                realName: realName,
+                role: 'STAFF' // Default role
+            };
+
+            try {
+                const response = await fetch('api/user/register', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(user)
+                });
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    alert(data.msg);
+                    switchView('login');
+                    document.getElementById('username').value = user.username;
+                } else {
+                    alert(data.msg || '注册失败');
+                }
+            } catch (error) {
+                alert('系统错误: ' + error.message); // Show actual error
+                console.error(error);
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        // Reset Password
+        document.getElementById('forgotForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+
+            const username = document.getElementById('reset-username').value;
+            const oldPassword = document.getElementById('reset-old-password').value;
+            const newPassword = document.getElementById('reset-new-password').value;
+            const confirmNewPassword = document.getElementById('reset-confirm-password').value;
+
+            // --- Client Side Validation ---
+            if (!username || !oldPassword || !newPassword || !confirmNewPassword) {
+                alert("所有字段都不能为空");
+                return;
+            }
+            if (newPassword !== confirmNewPassword) {
+                alert("两次输入的新密码不一致");
+                return;
+            }
+            // 使用全局密码验证函数
+            if (!isValidPassword(newPassword)) {
+                 alert("新密码至少7位，需包含数字、字母、符号中的任意两种");
+                 return;
+            }
+
+            btn.innerText = '提交中...';
+            btn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('username', username);
+            formData.append('oldPassword', oldPassword);
+            formData.append('newPassword', newPassword);
+
+            try {
+                const response = await fetch('api/user/reset-password', { method: 'POST', body: formData });
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    alert(data.msg);
+                    switchView('login');
+                } else {
+                    alert(data.msg || '重置失败');
+                }
+            } catch (error) {
+                alert('系统错误');
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

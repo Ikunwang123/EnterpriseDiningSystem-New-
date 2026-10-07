@@ -1,0 +1,82 @@
+{
+  "DiningApplication": "SupplyApplication",
+
+  "MenuItemSummary": "PlanItemSummary",
+  "MenuItemRepository": "PlanItemRepository",
+  "MenuItemSummaryRepository": "PlanItemSummaryRepository",
+  "MenuItem": "PlanItem",
+
+  "OrderItemRepository": "RequisitionItemRepository",
+  "OrderItemDTO": "RequisitionItemDTO",
+  "OrderItemService": "RequisitionItemService",
+  "OrderItemController": "RequisitionItemController",
+  "OrderItem": "RequisitionItem",
+
+  "OrderRepository": "RequisitionRepository",
+  "OrderDetailDTO": "RequisitionDetailDTO",
+  "OrderDetail": "RequisitionDetail",
+  "OrderStatus": "RequisitionStatus",
+  "OrderService": "RequisitionService",
+  "OrderController": "RequisitionController",
+  "OrderException": "RequisitionException",
+  "Order": "Requisition",
+
+  "DailyOrderSummaryRepository": "RequisitionSummaryRepository",
+  "DailyOrderSummaryController": "RequisitionSummaryController",
+  "DailyOrderSummary": "RequisitionSummary",
+
+  "BlanketOrderServiceImpl": "SummarySheetServiceImpl",
+  "BlanketOrderService": "SummarySheetService",
+  "BlanketOrderController": "SummarySheetController",
+  "BlanketOrderItem": "SummarySheetItem",
+  "BlanketOrderModule": "SummarySheetModule",
+  "BlanketOrder": "SummarySheet",
+
+  "RecipeRepository": "SupplyItemRepository",
+  "RecipeController": "SupplyItemController",
+  "RecipeService": "SupplyItemService",
+  "RecipeModule": "SupplyItemModule",
+  "Recipe": "SupplyItem",
+
+  "DishRepository": "EquipmentRepository",
+  "DishController": "EquipmentController",
+  "DishService": "EquipmentService",
+  "Dish": "Equipment",
+
+  "MenuRepository": "AvailabilityPlanRepository",
+  "MenuController": "AvailabilityPlanController",
+  "MenuService": "AvailabilityPlanService",
+  "MenuModule": "AvailabilityPlanModule",
+  "DailyMenuModule": "AvailabilityPlanBrowseModule",
+  "Menu": "AvailabilityPlan",
+
+  "SalesReportService": "RequisitionReportService",
+  "SalesReportController": "RequisitionReportController",
+  "ReportModule": "RequisitionReportModule",
+
+  "CreateOrderItemRequest": "CreateRequisitionItemRequest",
+  "CreateOrderRequest": "CreateRequisitionRequest",
+
+  "t_recipe": "t_supply_item",
+  "t_dish": "t_equipment",
+  "t_daily_menu": "t_availability_plan",
+  "t_order_item": "t_requisition_item",
+  "t_order": "t_requisition",
+  "t_employee": "t_staff",
+  "daily_order_summaries": "requisition_summaries",
+  "menu_item_summaries": "plan_item_summaries",
+  "menu_items": "plan_items",
+
+  "order_no": "requisition_no",
+  "order_id": "requisition_id",
+
+  "oi.order_id": "oi.requisition_id",
+  "oi.dish_name": "oi.item_name",
+  "oi.dish_id": "oi.item_id",
+  "price_today": "plan_price",
+  "serve_date": "plan_date",
+  "dish_name": "item_name",
+  "recipe_id": "supply_item_id",
+  "dish_id": "supply_item_id",
+  "daily_order_summary_id": "requisition_summary_id"
+}

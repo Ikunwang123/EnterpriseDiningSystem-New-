@@ -1,0 +1,70 @@
+# Maven编译输出目录
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# IDE配置文件
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+
+# Eclipse配置文件
+.classpath
+.project
+.settings/
+.apt_generated
+.factorypath
+.springBeans
+.sts4-cache
+
+# NetBeans配置文件
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# 编译输出目录（IDEA和Maven）
+out/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# 日志文件
+*.log
+logs/
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# 临时文件
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# 运行时文件
+*.pid
+*.seed
+*.pid.lock
+
+# 上传文件目录（如果存在）
+uploads/
+files/
+
+# 本地临时构建/运行目录（devtools 下的校验脚本会用）
+.run/
+.build-check/
+.baseline-build/
+
+# 迁移前的数据库备份（含原始数据，按需保留，不提交）
+backup-*.sql
+
+# 其他
+.kotlin
